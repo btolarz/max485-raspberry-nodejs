@@ -1,6 +1,6 @@
 {
   "name": "max485-raspberry-nodejs",
-  "version": "3.0.0",
+  "version": "2.0.1",
   "description": "A Modbus RTU library for Node.js using SerialPort and Raspberry Pi GPIO with MAX485",
   "main": "index.js",
   "scripts": {

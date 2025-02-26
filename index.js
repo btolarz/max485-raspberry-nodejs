@@ -1,6 +1,8 @@
 const ffi = require('ffi-napi');
 
-const ModbusLibrary = ffi.Library('./libmodbus_rtu', {
+const libPath = path.join(__dirname, 'libmodbus_rtu.so');
+
+const ModbusLibrary = ffi.Library(libPath, {
   'modbus_rtu_read_c': ['int', ['string', 'int', 'int', 'int', 'int', 'int']],
   'modbus_rtu_write_c': ['int', ['string', 'int', 'int', 'int', 'int', 'int', 'int']]
 });

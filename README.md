@@ -13,7 +13,7 @@ npm install max485-raspberry-nodejs
 ```js
 const ModbusRTU = require("max485-raspberry-nodejs");
 
-const client = new ModbusRTU({ path: "/dev/ttyAMA0", baudRate: 9600, re: 27, de: 17 });
+const client = new ModbusRTU({ path: "/dev/ttyAMA0", baudRate: 9600, re_pin: 27, de_pin: 17 });
 
 (async () => {
     await new Promise(resolve => setTimeout(resolve, 2000));
