@@ -1,31 +1,32 @@
 {
-  "name": "max485-raspberry-nodejs",
-  "version": "2.0.1",
-  "description": "A Modbus RTU library for Node.js using SerialPort and Raspberry Pi GPIO with MAX485",
-  "main": "index.js",
-  "scripts": {
-    "test": "jest --coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/btolarz/max485-raspberry-nodejs.git"
-  },
-  "keywords": [
-    "modbus",
-    "modbus-rtu",
-    "rs485",
-    "serialport",
-    "gpio",
-    "raspberrypi",
-    "max485"
-  ],
-  "author": "btolarz",
-  "license": "MIT",
-  "dependencies": {
-    "ffi-napi": "^4.0.3"
-  },
-  "devDependencies": {
-    "jest": "^29.7.0",
-    "jest-mock-extended": "^4.0.0-beta1"
+  "name": "modbus-rpi",
+  "version": "1.0.0",
+  "lockfileVersion": 3,
+  "requires": true,
+  "packages": {
+    "": {
+      "name": "modbus-rpi",
+      "version": "1.0.0",
+      "cpu": [
+        "arm",
+        "arm64"
+      ],
+      "hasInstallScript": true,
+      "license": "MIT",
+      "os": [
+        "linux"
+      ],
+      "dependencies": {
+        "node-addon-api": "^5.1.0"
+      },
+      "engines": {
+        "node": ">=14.0.0"
+      }
+    },
+    "node_modules/node-addon-api": {
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/node-addon-api/-/node-addon-api-5.1.0.tgz",
+      "integrity": "sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA=="
+    }
   }
 }
