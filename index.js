@@ -1,41 +1,81 @@
-const ffi = require('ffi-napi');
+const { NewModbusDevice, ReadCoils, ReadDiscreteInputs, ReadHoldingRegisters, ReadInputRegisters, WriteCoil, WriteRegister, WriteMultipleCoils, WriteMultipleRegisters, Close } = require('./build/Release/modbus');
 
-const libPath = path.join(__dirname, 'libmodbus_rtu.so');
+class ModbusRTU {
+    constructor(port, baudRate, dePin, rePin) {
+        this.device = NewModbusDevice(port, baudRate, dePin, rePin);
+        if (!this.device) {
+            throw new Error('Failed to create Modbus device');
+        }
+    }
 
-const ModbusLibrary = ffi.Library(libPath, {
-  'modbus_rtu_read_c': ['int', ['string', 'int', 'int', 'int', 'int', 'int']],
-  'modbus_rtu_write_c': ['int', ['string', 'int', 'int', 'int', 'int', 'int', 'int']]
-});
+    async readCoils(slaveID, startAddr, count) {
+        const result = await ReadCoils(this.device, slaveID, startAddr, count);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return JSON.parse(result);
+    }
 
-class Max485RaspberryNodejs {
-  constructor({ port = '/dev/ttyAMA0', baudrate = 9600, de_pin, re_pin }) {
-    this.port = port;
-    this.baudrate = baudrate;
-    this.de_pin = de_pin;
-    this.re_pin = re_pin;
-  }
+    async readDiscreteInputs(slaveID, startAddr, count) {
+        const result = await ReadDiscreteInputs(this.device, slaveID, startAddr, count);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return JSON.parse(result);
+    }
 
-  read(slave_id, register_id) {
-    return new Promise((resolve, reject) => {
-      const result = ModbusLibrary.modbus_rtu_read_c(this.port, this.baudrate, this.de_pin, this.re_pin, slave_id, register_id);
-      if (result < 0) {
-        reject(new Error(`Modbus read failed with error code: ${result}`));
-      } else {
-        resolve(result);
-      }
-    });
-  }
+    async readHoldingRegisters(slaveID, startAddr, count) {
+        const result = await ReadHoldingRegisters(this.device, slaveID, startAddr, count);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return JSON.parse(result);
+    }
 
-  write(slave_id, register_id, value) {
-    return new Promise((resolve, reject) => {
-      const result = ModbusLibrary.modbus_rtu_write_c(this.port, this.baudrate, this.de_pin, this.re_pin, slave_id, register_id, value);
-      if (result < 0) {
-        reject(new Error(`Modbus write failed with error code: ${result}`));
-      } else {
-        resolve(result);
-      }
-    });
-  }
+    async readInputRegisters(slaveID, startAddr, count) {
+        const result = await ReadInputRegisters(this.device, slaveID, startAddr, count);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return JSON.parse(result);
+    }
+
+    async writeCoil(slaveID, coilAddr, value) {
+        const result = await WriteCoil(this.device, slaveID, coilAddr, value);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return result;
+    }
+
+    async writeRegister(slaveID, regAddr, value) {
+        const result = await WriteRegister(this.device, slaveID, regAddr, value);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return result;
+    }
+
+    async writeMultipleCoils(slaveID, startAddr, values) {
+        const result = await WriteMultipleCoils(this.device, slaveID, startAddr, values);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return result;
+    }
+
+    async writeMultipleRegisters(slaveID, startAddr, values) {
+        const result = await WriteMultipleRegisters(this.device, slaveID, startAddr, values);
+        if (result.startsWith('Error:')) {
+            throw new Error(result);
+        }
+        return result;
+    }
+
+    close() {
+        Close(this.device);
+    }
 }
 
-module.exports = Max485RaspberryNodejs;
+module.exports = ModbusRTU; 
+
