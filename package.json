@@ -1,32 +1,42 @@
 {
-  "name": "modbus-rpi",
-  "version": "3.0.0",
-  "lockfileVersion": 3,
-  "requires": true,
-  "packages": {
-    "": {
-      "name": "modbus-rpi",
-      "version": "3.0.0",
-      "cpu": [
-        "arm",
-        "arm64"
-      ],
-      "hasInstallScript": true,
-      "license": "MIT",
-      "os": [
-        "linux"
-      ],
-      "dependencies": {
-        "node-addon-api": "^5.1.0"
-      },
-      "engines": {
-        "node": ">=14.0.0"
-      }
-    },
-    "node_modules/node-addon-api": {
-      "version": "5.1.0",
-      "resolved": "https://registry.npmjs.org/node-addon-api/-/node-addon-api-5.1.0.tgz",
-      "integrity": "sha512-eh0GgfEkpnoWDq+VY8OyvYhFEzBk6jIYbRKdIlyTiAXIVJ8PyBaKb0rp7oDtoddbdoHWhq8wwr+XZ81F1rpNdA=="
-    }
-  }
+  "name": "max485-raspberry-nodejs",
+  "version": "3.0.1",
+  "description": "Node.js library for Modbus RTU communication over RS485 using MAX485 transceivers on Raspberry Pi",
+  "main": "index.js",
+  "scripts": {
+    "install": "make clean && make so",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "modbus",
+    "rtu",
+    "rs485",
+    "max485",
+    "raspberry",
+    "pi",
+    "nodejs"
+  ],
+  "author": "btolarz",
+  "license": "MIT",
+  "cpu": [
+    "arm",
+    "arm64"
+  ],
+  "os": [
+    "linux"
+  ],
+  "dependencies": {
+    "node-addon-api": "^5.1.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/btolarz/max485-raspberry-nodejs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/btolarz/max485-raspberry-nodejs/issues"
+  },
+  "homepage": "https://github.com/btolarz/max485-raspberry-nodejs#readme"
 }

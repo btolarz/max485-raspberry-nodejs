@@ -1,11 +1,11 @@
-# ModbusRTU
+# max485-raspberry-nodejs
 
-Node.js library for Modbus RTU communication over serial port, optimized for Raspberry Pi.
+Node.js library for Modbus RTU communication over RS485 using MAX485 transceivers on Raspberry Pi.
 
 ## Installation
 
 ```bash
-npm install modbus-rtu
+npm install max485-raspberry-nodejs
 ```
 
 ## Requirements
@@ -17,7 +17,7 @@ npm install modbus-rtu
 ## Usage Example
 
 ```javascript
-const ModbusRTU = require('modbus-rtu');
+const ModbusRTU = require('max485-raspberry-nodejs');
 
 // Create Modbus device instance
 // Parameters:
