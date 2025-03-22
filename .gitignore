@@ -11,6 +11,11 @@ yarn-error.log
 .yarn
 
 # Build output
+!build/
+build/*
+!build/Release/
+build/Release/*
+!build/Release/modbus.node
 dist/
 *.dll
 *.dylib
