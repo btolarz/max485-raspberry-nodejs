@@ -1,1 +1,0 @@
-cmd_Release/obj.target/modbus.node := g++ -o Release/obj.target/modbus.node -shared -pthread -rdynamic  -Wl,-soname=modbus.node -Wl,--start-group Release/obj.target/modbus/src/binding.o Release/obj.target/node_modules/node-addon-api/nothing.a -Wl,--end-group -lnode /home/elineshed2002/app/libmodbus.so
